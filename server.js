@@ -34,6 +34,26 @@ const NamesRouter = Router.createClass([
       });
       return results;
     }
+  },
+  {
+    route: 'names.add',
+    call: (callPath, args)=>{
+      const newName = args[0];
+
+      data.names.push({
+        name: newName
+      });
+      return [
+        {
+          path: ['names', data.names.length-1, 'name'],
+          value: newName
+        },
+        {
+          path: ['names', 'length'],
+          value: data.names.length
+        }
+      ]
+    }
   }
 ]);
 
